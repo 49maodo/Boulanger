@@ -12,7 +12,7 @@ return new class extends Migration {
         Schema::create('commande_produits', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Commande::class)->constrained('commandes')->onDelete('cascade');
-            $table->foreignIdFor(Produit::class)->constrained('produits')->nullOnDelete();
+            $table->foreignIdFor(Produit::class)->nullable()->constrained('produits')->nullOnDelete();
             $table->integer('quantite')->default(1)->nullable();
             $table->decimal('prix_unitaire', 10, 2);
             $table->decimal('sous_total',10,2)->computed('quantite * prix_unitaire')->nullable();
